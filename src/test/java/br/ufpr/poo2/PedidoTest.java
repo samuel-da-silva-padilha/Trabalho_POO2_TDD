@@ -62,4 +62,26 @@ class PedidoTest {
         assertEquals(new BigDecimal("350.00"), pedido.calcularTotal());
         assertEquals(0, mock.chamadas);
     }
+
+    // ---------- Valores-limite da regra de frete grátis ----------
+
+    @Test
+    @DisplayName("limite: pedido de exatamente R$ 300,00 tem frete grátis")
+    void pedidoDe300TemFreteGratis() {
+        ServicoFreteMock mock = new ServicoFreteMock();
+        Pedido pedido = new Pedido(CEP, new BigDecimal("300.00"), PESO, mock);
+
+        assertEquals(new BigDecimal("300.00"), pedido.calcularTotal());
+        assertEquals(0, mock.chamadas);
+    }
+
+    @Test
+    @DisplayName("limite: pedido de R$ 299,99 paga o frete do serviço")
+    void pedidoDe299e99PagaFrete() {
+        ServicoFreteMock mock = new ServicoFreteMock();
+        Pedido pedido = new Pedido(CEP, new BigDecimal("299.99"), PESO, mock);
+
+        assertEquals(new BigDecimal("324.99"), pedido.calcularTotal());
+        assertEquals(1, mock.chamadas);
+    }
 }

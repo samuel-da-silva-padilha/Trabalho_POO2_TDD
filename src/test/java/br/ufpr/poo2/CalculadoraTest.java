@@ -94,4 +94,18 @@ class CalculadoraTest {
         assertThrows(ArithmeticException.class,
                 () -> calculadora.dividir(0.0, 0.0));
     }
+
+    @Test
+    @DisplayName("dividir: divisor negativo")
+    void dividirPorDivisorNegativo() {
+        assertEquals(-2.5, calculadora.dividir(10.0, -4.0), DELTA);
+    }
+
+    @Test
+    @DisplayName("dividir: divisor -0.0 também lança ArithmeticException")
+    void dividirPorZeroNegativoLancaExcecao() {
+        // Em double existe o zero negativo; sem o tratamento, 5.0 / -0.0 daria -Infinity
+        assertThrows(ArithmeticException.class,
+                () -> calculadora.dividir(5.0, -0.0));
+    }
 }
