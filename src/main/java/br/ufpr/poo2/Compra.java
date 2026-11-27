@@ -16,7 +16,7 @@ public class Compra {
      *
      * @param valor valor total da compra
      * @return valor do desconto, com duas casas decimais
-     * @throws IllegalArgumentException se o valor for negativo
+     * @throws IllegalArgumentException se o valor for nulo ou negativo
      */
     public BigDecimal calcularDesconto(BigDecimal valor) {
         validarValor(valor);
@@ -27,6 +27,9 @@ public class Compra {
     }
 
     private void validarValor(BigDecimal valor) {
+        if (valor == null) {
+            throw new IllegalArgumentException("O valor da compra é obrigatório");
+        }
         if (valor.signum() < 0) {
             throw new IllegalArgumentException(
                     "O valor da compra não pode ser negativo: " + valor);
