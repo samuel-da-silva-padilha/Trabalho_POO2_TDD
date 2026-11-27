@@ -1,0 +1,9 @@
+# Scripts de shell precisam de fim de linha LF para rodar no Linux/macOS
+*.sh   text eol=lf
+mvnw   text eol=lf
+
+# Scripts do Windows usam CRLF
+*.bat  text eol=crlf
+*.cmd  text eol=crlf
+
+*.jar  binary

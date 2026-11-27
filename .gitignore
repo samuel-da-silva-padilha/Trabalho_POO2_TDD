@@ -4,3 +4,6 @@ out/
 .idea/
 *.iml
 .vscode/
+
+# JUnit Console Launcher baixado pelos scripts executar-testes
+lib/
