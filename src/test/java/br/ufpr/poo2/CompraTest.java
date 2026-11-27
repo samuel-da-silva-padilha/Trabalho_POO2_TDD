@@ -45,4 +45,28 @@ class CompraTest {
         assertThrows(IllegalArgumentException.class,
                 () -> compra.calcularDesconto(new BigDecimal("-10.00")));
     }
+
+    // ---------- Ciclo 2 do TDD: valores-limite e entrada nula ----------
+
+    @Test
+    @DisplayName("compra de R$ 99,99 não recebe desconto (logo abaixo do limite)")
+    void compraDe99e99NaoTemDesconto() {
+        BigDecimal desconto = compra.calcularDesconto(new BigDecimal("99.99"));
+        assertEquals(new BigDecimal("0.00"), desconto);
+    }
+
+    @Test
+    @DisplayName("compra de R$ 0,00 não recebe desconto e não é rejeitada")
+    void compraDeZeroNaoTemDesconto() {
+        BigDecimal desconto = compra.calcularDesconto(new BigDecimal("0.00"));
+        assertEquals(new BigDecimal("0.00"), desconto);
+    }
+
+    @Test
+    @DisplayName("valor nulo é rejeitado com IllegalArgumentException")
+    void valorNuloLancaExcecao() {
+        IllegalArgumentException excecao = assertThrows(IllegalArgumentException.class,
+                () -> compra.calcularDesconto(null));
+        assertEquals("O valor da compra é obrigatório", excecao.getMessage());
+    }
 }
