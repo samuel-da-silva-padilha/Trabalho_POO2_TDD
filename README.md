@@ -24,9 +24,9 @@ Trabalho_POO2_TDD/
     │   ├── Pedido.java           (Exercício 5)
     │   └── ServicoFrete.java     (Exercício 5)
     └── test/java/br/ufpr/poo2/
-        ├── CalculadoraTest.java  (11 testes)
-        ├── CompraTest.java       (4 testes)
-        └── PedidoTest.java       (3 testes: stub e mock)
+        ├── CalculadoraTest.java  (13 testes)
+        ├── CompraTest.java       (7 testes)
+        └── PedidoTest.java       (5 testes: stub e mock)
 ```
 
 ## Como executar os testes
@@ -39,7 +39,10 @@ Na pasta do projeto (onde está o `pom.xml`):
 mvn test
 ```
 
-Resultado esperado: `Tests run: 18, Failures: 0, Errors: 0, Skipped: 0` e `BUILD SUCCESS`.
+Resultado esperado: `Tests run: 25, Failures: 0, Errors: 0, Skipped: 0` e `BUILD SUCCESS`.
+
+O mesmo comando gera o relatório de cobertura do JaCoCo em `target/site/jacoco/index.html`
+(abra no navegador).
 
 Para rodar só uma classe de teste:
 
@@ -86,3 +89,8 @@ git log --oneline
 - `TDD Red` – testes escritos antes da implementação (os 4 falham)
 - `TDD Green` – implementação mínima (os 4 passam)
 - `TDD Refactor` – melhoria da legibilidade sem mudar o comportamento (todos passam)
+- `TDD Red (ciclo 2)` – novos testes de valores-limite e de valor nulo (o do valor nulo falha)
+- `TDD Green (ciclo 2)` – validação do valor nulo (os 7 testes passam)
+
+Para ver o código de uma etapa específica, use por exemplo `git checkout a241cf7`
+(etapa Red) e depois `git checkout main` para voltar.
