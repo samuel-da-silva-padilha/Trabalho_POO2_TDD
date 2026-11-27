@@ -3,6 +3,8 @@
 Programação Orientada a Objetos II – UFPR Setor Palotina
 Aluno: Samuel da Silva Padilha (GRR20240770)
 
+Repositório: https://github.com/samuel-da-silva-padilha/Trabalho_POO2_TDD
+
 ## Requisitos
 
 - Java 17 ou superior (JDK)
@@ -12,7 +14,7 @@ Aluno: Samuel da Silva Padilha (GRR20240770)
 ## Estrutura
 
 ```
-trabalho02-testes/
+Trabalho_POO2_TDD/
 ├── pom.xml
 ├── README.md
 └── src/
