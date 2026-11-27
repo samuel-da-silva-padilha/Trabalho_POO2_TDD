@@ -7,8 +7,8 @@ Repositório: https://github.com/samuel-da-silva-padilha/Trabalho_POO2_TDD
 
 ## Requisitos
 
-- Java 17 ou superior (JDK)
-- Maven 3.6 ou superior (ou uma IDE com suporte a Maven)
+- Java 25 LTS (JDK)
+- Maven 3.9.11 ou superior (ou uma IDE com suporte a Maven)
 - JUnit 5 (JUnit Jupiter 5.10.1), baixado automaticamente pelo Maven
 
 ## Estrutura
