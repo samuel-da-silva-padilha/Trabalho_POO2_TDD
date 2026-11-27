@@ -5,14 +5,39 @@ import java.math.RoundingMode;
 
 public class Compra {
 
+    private static final BigDecimal VALOR_MINIMO = new BigDecimal("100.00");
+    private static final BigDecimal PERCENTUAL_DESCONTO = new BigDecimal("0.10");
+    private static final BigDecimal SEM_DESCONTO = new BigDecimal("0.00");
+
+    /**
+     * Calcula o desconto de uma compra.
+     * Compras a partir de R$ 100,00 recebem 10% de desconto;
+     * compras abaixo desse valor não recebem desconto.
+     *
+     * @param valor valor total da compra
+     * @return valor do desconto, com duas casas decimais
+     * @throws IllegalArgumentException se o valor for negativo
+     */
     public BigDecimal calcularDesconto(BigDecimal valor) {
-        if (valor.compareTo(BigDecimal.ZERO) < 0) {
-            throw new IllegalArgumentException("Valor negativo");
+        validarValor(valor);
+        if (temDireitoAoDesconto(valor)) {
+            return arredondar(valor.multiply(PERCENTUAL_DESCONTO));
         }
-        if (valor.compareTo(new BigDecimal("100.00")) >= 0) {
-            BigDecimal desconto = valor.multiply(new BigDecimal("0.10"));
-            return desconto.setScale(2, RoundingMode.HALF_EVEN);
+        return SEM_DESCONTO;
+    }
+
+    private void validarValor(BigDecimal valor) {
+        if (valor.signum() < 0) {
+            throw new IllegalArgumentException(
+                    "O valor da compra não pode ser negativo: " + valor);
         }
-        return new BigDecimal("0.00");
+    }
+
+    private boolean temDireitoAoDesconto(BigDecimal valor) {
+        return valor.compareTo(VALOR_MINIMO) >= 0;
+    }
+
+    private BigDecimal arredondar(BigDecimal valor) {
+        return valor.setScale(2, RoundingMode.HALF_EVEN);
     }
 }
